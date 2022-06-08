@@ -7,15 +7,15 @@
     <title>{% block title %}메인페이지{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     {% block activeClass %}
     <script>
-        window.onload = function(){
-            document.getElementById('home').className = 'nav-link active';
-        }
+      window.onload = function(){
+          document.getElementById('home').className = 'nav-link active';
+      }
     </script>
     {% endblock %}
-
     {% block cssblock %}
     <!-- css 작성 -->
     {% endblock %}
@@ -87,11 +87,80 @@
       </div>
     </div>
     <div>
-      {% block content %}
-      {% endblock %}
     </div>
   </div>
 </head>
 <body>
+  {% block content %}
+  <div id="bg" style="background-image: url('{% static "img/cotton.jpg"%}')";>
+    <div class="faker" id="faker">
+      <img src="/static/img/helmet2.png" width=10%>
+      Faker
+      <img src="/static/img/vehicle.png" width=10%>
+    </div>
+  </div>
+  <table class="member">
+    <tr class="img">
+      <td><img src="/static/img/member1.png" width="50%"></td>
+      <td><img src="/static/img/member2.png" width="50%"></td>
+      <td><img src="/static/img/member3.png" width="50%"></td>
+      <td><img src="/static/img/member4.png" width="50%"></td>
+      <td><img src="/static/img/member5.png" width="50%"></td>
+      <td><img src="/static/img/member6.png" width="50%"></td>  
+    </tr>
+    <tr class="name">
+      <td>김태우</td>
+      <td>변호석</td>
+      <td>허자윤</td>
+      <td>박명진</td>
+      <td>박정호</td>
+      <td>김윤기</td>
+    </tr>
+    <tr class="intro">
+      <td>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+            <li>크롤링</li>
+            <li>라벨링</li>
+            <li>웹 디자인</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+{% endblock %}
 </body>
 </html>

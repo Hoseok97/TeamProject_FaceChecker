@@ -1,9 +1,37 @@
-* {
-    margin: 0;
+@font-face {
+    font-family: cafe24;
+    src: url('/static/css/Cafe24SsurroundAir.ttf') format('truetype');
 }
-div {
-    margin: auto;
-    margin-top: 300px;
+
+@font-face {
+    font-family: cafe242;
+    src: url('/static/css/Cafe24Ssurround.ttf') format('truetype');
+}
+
+.faker{
+    font-size: 200px;
     text-align: center;
-    font-size: 30px;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    font-family: cafe242;
+    color:indianred
+}
+
+.img{
+    text-align: center;
+}
+
+.name{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    font-family: cafe242;
+}
+
+ul{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: cafe24;
+    font-size: larger;
 }
