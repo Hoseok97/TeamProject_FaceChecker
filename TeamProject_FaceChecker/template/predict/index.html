@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block title %}이미지분석{% endblock %}
+{% block activeClass %}
+<script>
+    window.onload = function(){
+        document.getElementById('predict').className = 'nav-link active';
+    }
+</script>
+{% endblock %}
+{% block cssblock %}
+<style>
+     h3 {
+        margin:auto;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    #btnsort {
+        margin:auto;
+        text-align: center;
+    }
+    a {
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <h3>이미지 분석</h3>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <table class="table">
+            <tr>
+                <td><span class="input-group-text">이미지 분석 파일 올리기</span></td>
+                <td><input clss='form-control' type="file" name="files"></td>
+            </tr>
+        </table>
+        <div id="btnsort">
+            <input class='btn btn-primary' type="submit" value="업로드">
+            <input class='btn btn-danger' type="reset" value="취소">
+        </div>
+    </form>
+    {% if result == 1 %}
+        <img src="http://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg" width="300px">
+        <h3>강아지</h3>
+    {% elif result == 0 %}
+        <img src="https://post-phinf.pstatic.net/MjAyMDAyMjlfMjY4/MDAxNTgyOTU0Nzg3MjQ4.PBMFV4WrSJmeSUJ56c4C7Vkz_SsQlJ1SByKU18kkJh0g.T7mQnadCWVtEZ448AGk_9kG1HFBAzdztXZcBjvSbduwg.JPEG/%EA%B3%A0%EC%96%91%EC%9D%B4_%EB%82%98%EC%9D%B41.jpg?type=w1200" width="300px">
+        <h3>고양이</h3>
+    {% endif %}
+{% endblock %}

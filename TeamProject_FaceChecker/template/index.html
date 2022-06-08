@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}메인페이지{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index_main.css' %}">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    {% block activeClass %}
+    <script>
+        window.onload = function(){
+            document.getElementById('home').className = 'nav-link active';
+        }
+    </script>
+    {% endblock %}
+
+    {% block cssblock %}
+    <!-- css 작성 -->
+    {% endblock %}
+</head>
+<body>
+    <h1 class="visually-hidden">Headers examples</h1>
+
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4">Faker</span>
+      </a>
+
+      
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/index" id="home" class="nav-link" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="/phonebook/index/1" class="nav-link" id="phonebook" >전화번호부</a></li>
+        <li class="nav-item"><a href="/sleep/index" class="nav-link" id="sleep">졸음운전</a></li>
+        <li class="nav-item"><a href="/predict/index" class="nav-link" id="predict">이미지분석</a></li>
+        {% if user.is_active %}
+          <li class="nav-item"><a href="/account/myinfo" class="nav-link" id="user1">{{user}}</a></li>
+          <li class="nav-item"><a href="/account/logout" class="nav-link" id="login">로그아웃</a></li>
+        {% else %}
+          <li class="nav-item"><a href="/account/login" class="nav-link" id="login">로그인</a></li>
+        {% endif %}
+      </ul>
+    </header>
+    <div>
+      {% block content %}
+      <section class="gubun">
+        <article>
+          <a href="/sleep/index">
+            <dl>
+              <dt>
+                <span>
+                  <img class="icon1" src="/static/img/icon_cpn1.png">
+                </span>
+              </dt>
+              <dd>졸음운전 방지</dd>
+            </dl>
+          </a>
+          <img class="use1" src="/static/img/img_use1.jpg">
+        </article>
+        <article>
+          <a href="/predict/index">
+            <dl>
+              <dt>
+                <span>
+                  <img class="icon2" src="/static/img/icon_cpn2.png">
+                </span>
+              </dt>
+              <dd>헬멧 안전 체크</dd>
+            </dl>
+          </a>
+          <img class="use2" src="/static/img/img_use2.jpg">
+        </article>
+        <article>
+          <a href="/phonebook/index/1">
+            <dl>
+              <dt>
+                <span>
+                  <img class="icon3" src="/static/img/icon_cpn3.png">
+                </span>
+              </dt>
+              <dd>졸음쉼터 위치 안내</dd>
+            </dl>
+          </a>
+          <img class="use3" src="/static/img/img_use3.jpg">
+        </article>
+        <article>
+          <a href="#;">
+            <dl>
+              <dt>
+                <span>
+                  <img class="icon4" src="/static/img/icon_cpn4.png">
+                </span>
+              </dt>
+              <dd>새로운 다른 기능</dd>
+            </dl>
+          </a>
+          <img class="use4" src="/static/img/img_use4.jpg">
+        </article>
+      </section>
+      <article class="prot">
+        <h3>Project Timeline</h3>
+        <div class="motionBox">
+          <img class="sam" src="/static/img/img_timeline2.png">
+        </div>
+      </article>
+      {% endblock %}
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block title %}로그아웃{% endblock %}
+{% block activeClass %}
+    <script>
+        window.onload = function(){
+            document.getElementById('login').className = 'nav-link active';
+        }
+        function mainIndex(){
+            location.href='/phonebook/index'
+        }
+    </script>
+{% endblock %}
+{% block content %}
+    로그아웃 페이지 입니다.<br>
+    <input type="button" onclick="mainIndex()" value="메인">
+{% endblock %}
