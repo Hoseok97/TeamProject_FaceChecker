@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% block title %}전화번호부{% endblock %}
+{% block activeClass %}
+<script>
+    window.onload = function(){
+        document.getElementById('phonebook').className = 'nav-link active';
+    }
+</script>
+{% endblock %}
+{% block cssblock %}
+<style>
+    h3 {
+        margin:auto;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    #btnsort {
+        margin:auto;
+        text-align: center;
+    }
+    a {
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <h3>phonebook index 페이지 입니다.</h3>
+    <table class="table table-striped table-hover">
+        <!-- 테이블 태그의 기본 클래스 table -->
+        <!-- 테이블 색 : primary, secondary, success, danger, info, warning, light, dark-->
+        <tr>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>전화번호</th>
+        </tr>
+    {% for user in alluser %}
+        <tr role="button" onclick="document.location.href='/phonebook/detail/{{ user.id}}'">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.telnum }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="/phonebook/index/1">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    {% if alluser.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href='/phonebook/index/{{ alluser.previous_page_number }}'">이전</a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+    {% endif %}
+    {% for page_number in pagerange %}
+    {% if page_number <= alluser.paginator.num_pages %}
+        {% if page_number == alluser.number %}
+            <li class="page-item active">
+                <a class="page-link" href="/phonebook/index/{{ page_number }}">{{ page_number }}</a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" href="/phonebook/index/{{ page_number }}">{{ page_number }}</a>
+            </li>
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% if alluser.has_next %}
+        <li class="page-item">
+            <a class="page-link" href='/phonebook/index/{{ alluser.next_page_number }}'">다음</a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+    {% endif %}
+        <li class="page-item">
+            <a class="page-link" href="/phonebook/index/{{ alluser.paginator.num_pages }}">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+    <div id="btnsort">
+        <a href='{% url "PB:A" %}'><button class="btn btn-outline-primary">추가</button></a>
+    </div>
+{% endblock %}

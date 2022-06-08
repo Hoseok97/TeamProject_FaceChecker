@@ -1,0 +1,56 @@
+{% extends 'index.html' %} 
+{% block title %}전화번호 상세내역{% endblock %}
+{% block cssblock %}
+<style>
+    h3 {
+        margin:auto;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    #btnsort {
+        margin-left:43%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <h3>phonebook detail 페이지 입니다</h3>
+    <table class="table">
+        <tr>
+            <th><span class='input-group-text'>이름</span></th>
+            <td><span class="form-control">{{ user.name }}</span></td>
+        </tr>
+        <tr>
+            <th><span class='input-group-text'>전화번호</span></th>
+            <td><span class="form-control">{{ user.telnum }}</span></td>
+        </tr>
+        <tr>
+            <th><span class='input-group-text'>주소</span></th>
+            <td><span class='form-control'>{{ user.address }}</span></td>
+        </tr>
+        <tr>
+            <th><span class='input-group-text'>이메일</span></th>
+            <td><span class='form-control'>{{ user.email }}</span></td>
+        </tr>
+        <tr>
+            <th><span class='input-group-text'>생년월일</span></th>
+            <td><span class='form-control'>{{ user.birth }}</span></td>
+        </tr>
+    </table>
+    <div id="btnsort">
+        <input type="button" onclick="mainlink()" class="btn btn-secondary" value="메인">
+        <input type="button" class="btn btn-primary" onclick="document.location.href='/phonebook/update/{{ user.id }}'" value="수정">
+        <input type="button" class="btn btn-danger" onclick="document.location.href='/phonebook/delete/{{ user.id }}'" value="삭제">
+    </div>
+{% endblock %}
+{% block activeClass %}
+<script>
+    window.onload = function(){
+        document.getElementById('phonebook').className = 'nav-link active';
+    }
+
+    function mainlink(){
+        location.href="{% url 'PB:I' 1 %}";
+    }
+</script>
+{% endblock %}
