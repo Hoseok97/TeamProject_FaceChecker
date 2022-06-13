@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+{% block title %}계정 등록{% endblock %}
+{% block activeClass %}
+<script>
+    window.onload = function(){
+        document.getElementById('login').className = 'nav-link active';
+    }
+    function mainIndex(){
+        location.href='/account/register';
+    }
+    function check(){
+        let pwd1 = frm.password.value;
+        let pwd2 = frm.chkpwd.value;
+
+        if(pwd1 == pwd2){
+            $("#mymodal .modal-body").text('암호가 일치 합니다.');
+            $('#mymodal').show();
+        }else{
+            frm.password.value='';
+            frm.chkpwd.value="";
+            frm.password.focus();
+            $("#mymodal .modal-body").text('암호가 일치 하지 않습니다.');
+            $('#mymodal').show();
+        }
+    }
+    function closemodal(){
+        $("#mymodal").hide();
+    }
+</script>
+{% endblock %}
+{% block cssblock %}
+<style>
+    h3 {
+        margin:auto;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    #btnsort {
+        margin-left:43%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <div class="px-3 py-2 bg-white text-dark">
+        <form method='post' name="frm">{% csrf_token %}
+            <h3>계정 등록</h3>
+            <table class="table table-hover">
+                <tr>
+                    <th><span class="input-group-text">사용자 ID</span></th>
+                    <td><input type="text" class='form-control' name="username"></td>
+                </tr>
+                <tr>
+                    <th><span class="input-group-text">사용자 PW</span></th>
+                    <td><input type="password" class='form-control' name="password"></td>
+                </tr>
+                <tr>
+                    <th><span class="input-group-text">PW 확인</span></th>
+                    <td><input type="password" class='form-control' name="chkpwd" onchange="check()"></td>
+                </tr>
+                <tr>
+                    <th><span class="input-group-text">이름</span></th>
+                    <td><input type="text" class='form-control' name="first_name"></td>
+                </tr>
+                <tr>
+                    <th><span class="input-group-text">성</span></th>
+                    <td><input type="text" class='form-control' name="last_name"></td>
+                </tr>
+                <tr>
+                    <th><span class="input-group-text">이메일</span></th>
+                    <td><input type="email" class='form-control' name="email"></td>
+                </tr>
+            </table>
+            <div id="btnsort">
+                <input class="btn btn-outline-primary" type="submit" value="회원가입">
+                <input class="btn btn-outline-danger" type="reset" value="다시입력">
+            </div>
+        </form>
+        <div class="modal" tabindex="-1" id="mymodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">암호 확인</h5>
+                        <button type="button" onclick="closemodal()"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="closemodal()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

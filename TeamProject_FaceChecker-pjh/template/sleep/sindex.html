@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block title %}졸음운전{% endblock %}
+{% block activeClass %}
+<script>
+    window.onload = function(){
+        document.getElementById('sleep').className = 'nav-link active';
+    }
+</script>
+{% endblock %}
+{% block content %}
+    <div class="px-3 py-2 bg-white text-dark">
+        졸지마렴
+    </div>
+{% endblock %}
